@@ -1,8 +1,8 @@
-bookZero = new Book('Think and Grow Rich', 'Napoleon Hill', 276, 'yes');
+bookZero = new Book('Think and Grow Rich', 'Napoleon Hill', 276, 'Yes');
 
-bookOne = new Book('The Master Key System', 'Charles Haanel', 140, 'no');
+bookOne = new Book('The Master Key System', 'Charles Haanel', 140, 'No');
 
-let myLibrary = [bookZero];
+let myLibrary = [bookZero, bookZero, bookZero, bookZero];
 
 let forPopup = document.querySelector('#formPopup');
 
@@ -44,21 +44,23 @@ function showBook() {
 	book.setAttribute('class', 'book');
 
 	let title = document.createElement('div');
-	title.setAttribute('class', 'title');
+	title.setAttribute('class', 'formItem');
 
 	let author = document.createElement('div');
-	author.setAttribute('class', 'author');
+	author.setAttribute('class', 'formItem');
 
 	let pages = document.createElement('div');
-	pages.setAttribute('class', 'pages');
+	pages.setAttribute('class', 'formItem');
 
 	let read = document.createElement('div');
-	read.setAttribute('class', 'read');
+	read.setAttribute('class', 'formItem');
 
-	title.textContent = myLibrary[myLibrary.length - 1].title;
-	author.textContent = myLibrary[myLibrary.length - 1].author;
-	pages.textContent = myLibrary[myLibrary.length - 1].pages;
-	read.textContent = myLibrary[myLibrary.length - 1].read;
+	title.textContent = `Title: ${myLibrary[myLibrary.length - 1].title}`;
+	author.textContent = `Author: ${myLibrary[myLibrary.length - 1].author}`;
+	pages.textContent = `Length: ${myLibrary[myLibrary.length - 1].pages} pages`;
+	read.textContent = `Finished reading?: ${
+		myLibrary[myLibrary.length - 1].read
+	}`;
 
 	library.appendChild(book);
 	book.appendChild(title);
@@ -89,6 +91,11 @@ function submitForm() {
 		newRead.value
 	);
 	myLibrary.push(newBook);
+	newTitle.value = '';
+	newAuthor.value = '';
+	newPages.value = '';
+	newRead.value = '';
+	// closeForm();
 	showBook();
 }
 

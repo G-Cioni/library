@@ -4,44 +4,46 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>My Library</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
-    <h1>Welcome to Your Library</h1>
+<body id="#container">
+
+    <h1>My Library</h1>
+
     <button id="addBook" class="btn" onclick="openForm()">Add a new book</button>
 
-    <div id="formPopup">
+    <form id="formPopup">
 
         <h2>Add a New Book</h2>
 
         <div class="formItem">
             <label for="title" class="formLabel">Title</label>
-            <input type="text" placeholder="Es. Think and Grow Rich" name="title" id="title" >
+            <input type="text" placeholder="Es. Think and Grow Rich" name="title" id="title" class="formInput" required>
         </div>
 
         <div class="formItem">
             <label for="author" class="formLabel">Author</label>
-            <input type="text" placeholder="Es. Napoleon Hill" name="author" id="author">
+            <input type="text" placeholder="Es. Napoleon Hill" name="author" id="author" class="formInput" required>
         </div>
 
         <div class="formItem">
             <label for="pages" class="formLabel">Numer of Pages</label>
-            <input type="text" placeholder="Es. 238" name="pages" id="pages">
+            <input type="text" placeholder="Es. 238" name="pages" id="pages" class="formInput" required>
         </div>
 
         <div class="formItem">
             <label for="read" class="formLabel">Have you read this book?</label>
-            <select name="read" id="read">
-                <option value="yes">Yes!</option>
-                <option value="no">Not yet</option>
+            <select name="read" id="read" class="formInput" required>
+                <option value="No">Not yet</option>
+                <option value="Yes">Yes!</option>
             </select>
         </div>
 
         <button type="submit" class="btn" id="submit">Confirm</button>
-        <button type="submit" class="btn" onclick="closeForm()">Cancel</button>
+        <button class="btn" onclick="closeForm()">Cancel</button>
 
-    </div>
+    </form>
 
     <main  id="library">
 
