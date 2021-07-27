@@ -46,11 +46,6 @@ Book.prototype.toggleRead = function () {
 	}
 };
 
-function addBook(...book) {
-	myLibrary.push(...book);
-	showBook(book);
-}
-
 function showBook() {
 	let book = document.createElement('div');
 	book.setAttribute('id', `${myLibrary.length}`);
@@ -102,10 +97,30 @@ function showBook() {
 	lowerButtons.appendChild(toggleReadBtn);
 }
 
+function addBook(...book) {
+	myLibrary.push(...book);
+	showBook(book);
+}
+
 function showLibrary() {
 	for (let count = 0; count < myLibrary.length; count++) {
 		showBook();
 	}
+}
+
+function removeBook() {
+	let dataRemove = event.target.getAttribute('data-remove');
+	let book = document.getElementById(dataRemove);
+	delete myLibrary[dataRemove - 1];
+	book.remove();
+}
+
+function toggleRead() {
+	let dataRead = event.target.getAttribute('data-toggle');
+	myLibrary[dataRead - 1].toggleRead();
+	document.querySelector(
+		`[data-read="${dataRead}"]`
+	).textContent = `Finished reading?: ${myLibrary[dataRead - 1].read}`;
 }
 
 function openForm() {
@@ -128,13 +143,13 @@ function verifyFormErrors() {
 			errorList.push('Number of Pages');
 	}
 	errors.textContent = errorList.join(' | ');
-	console.log(errors);
 	if (errorList[1] === undefined) {
 		return true;
 	} else {
 		return false;
 	}
 }
+
 function submitForm() {
 	if (verifyFormErrors() === true) {
 		let newBook = new Book(
@@ -153,28 +168,8 @@ function submitForm() {
 	}
 }
 
-function removeBook() {
-	let dataRemove = event.target.getAttribute('data-remove');
-	console.log(dataRemove);
-	let book = document.getElementById(dataRemove);
-	delete myLibrary[dataRemove - 1];
-	book.remove();
-	console.table(myLibrary);
-}
-
-function toggleRead() {
-	let dataRead = event.target.getAttribute('data-toggle');
-	myLibrary[dataRead - 1].toggleRead();
-	console.table(myLibrary);
-	document.querySelector(
-		`[data-read="${dataRead}"]`
-	).textContent = `Finished reading?: ${myLibrary[dataRead - 1].read}`;
-}
-
 showLibrary();
 
 addBook(bookZero);
 addBook(bookOne);
 addBook(bookTwo);
-
-console.table(myLibrary);
