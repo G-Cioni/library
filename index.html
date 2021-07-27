@@ -17,6 +17,8 @@
 
         <h2>Add a New Book</h2>
 
+        <p id="errors"></p>
+
         <div class="formItem">
             <label for="title" class="formLabel">Title</label>
             <input type="text" placeholder="Es. Think and Grow Rich" name="title" id="title" class="formInput" required>
@@ -41,7 +43,7 @@
         </div>
 
         <button type="submit" class="btn" id="submit">Confirm</button>
-        <button class="btn" onclick="closeForm()">Cancel</button>
+        <button class="btn" onclick="closeForm()" id="cancelBtn">Cancel</button>
 
     </form>
 
