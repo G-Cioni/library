@@ -4,13 +4,14 @@ html {
 	font-size; 16px;
 }
 
-#container {
+body {
 	display: grid;
-	grid-template-columns: 1fr 1fr 1fr;
-	grid-template-rows: 1fr 1fr 1fr;
+	grid-template-columns: 30% 1fr 30%;
+	grid-template-rows: auto auto 1fr;
 	grid-template-areas: ". h1 ."
 						 ". addBook ."
 						 ". library .";
+	align-content: center;
 }
 
 #formPopup {
