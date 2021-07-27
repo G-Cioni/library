@@ -1,7 +1,22 @@
 html {
-    background-color: rgb(31, 31, 31);
+	background-color: rgb(31, 31, 31);
 }
 
 .form {
-    height: 1rem;
+	height: 1rem;
+}
+
+.book {
+}
+
+.title {
+}
+
+.author {
+}
+
+.pages {
+}
+
+.read {
 }
