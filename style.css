@@ -91,3 +91,23 @@ h2 {
 .formInput {
 	height: 1.8em;
 }
+
+@media (max-width: 720px) {
+	body {
+		display: grid;
+		grid-template-columns: 1fr;
+		grid-template-rows: auto auto 1fr;
+		grid-template-areas:
+			'h1'
+			'addBook'
+			'library';
+		align-content: center;
+		justify-items: center;
+	}
+
+	#library {
+		grid-area: library;
+		display: grid;
+		grid-template-columns: 1fr;
+	}
+}
