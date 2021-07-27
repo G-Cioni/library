@@ -4,11 +4,22 @@ bookOne = new Book('The Master Key System', 'Charles Haanel', 140, 'no');
 
 let myLibrary = [bookZero];
 
+let forPopup = document.querySelector('#formPopup');
+
+const submitBtn = document.querySelector('#submit');
+
 const library = document.querySelector('#library');
 
 const newBookBtn = document.querySelector('#addBook');
 
-newBookBtn.addEventListener('click', () => createForm());
+newBookBtn.addEventListener('click', () => openForm());
+
+submitBtn.addEventListener('click', () => submitForm());
+
+let newTitle = document.querySelector('#title');
+let newAuthor = document.querySelector('#author');
+let newPages = document.querySelector('#pages');
+let newRead = document.querySelector('#read');
 
 function Book(title, author, pages, read) {
 	this.title = title;
@@ -22,9 +33,9 @@ function Book(title, author, pages, read) {
 	};
 }
 
-function addBook(...libro) {
-	myLibrary.push(...libro);
-	showBook(libro);
+function addBook(...book) {
+	myLibrary.push(...book);
+	showBook(book);
 }
 
 function showBook() {
@@ -60,6 +71,25 @@ function showLibrary() {
 	for (let count = 0; count < myLibrary.length; count++) {
 		showBook();
 	}
+}
+
+function openForm() {
+	formPopup.style.display = 'block';
+}
+
+function closeForm() {
+	formPopup.style.display = 'none';
+}
+
+function submitForm() {
+	let newBook = new Book(
+		newTitle.value,
+		newAuthor.value,
+		newPages.value,
+		newRead.value
+	);
+	myLibrary.push(newBook);
+	showBook();
 }
 
 showLibrary();

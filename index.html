@@ -9,9 +9,9 @@
 </head>
 <body>
     <h1>Welcome to Your Library</h1>
-    <button id="addBook" onclick="operForm()">Add a new book</button>
+    <button id="addBook" class="btn" onclick="openForm()">Add a new book</button>
 
-    <div class="formPopup"></div>
+    <div id="formPopup">
 
         <h2>Add a New Book</h2>
 
@@ -37,6 +37,11 @@
                 <option value="no">Not yet</option>
             </select>
         </div>
+
+        <button type="submit" class="btn" id="submit">Confirm</button>
+        <button type="submit" class="btn" onclick="closeForm()">Cancel</button>
+
+    </div>
 
     <main  id="library">
 

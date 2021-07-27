@@ -2,8 +2,9 @@ html {
 	background-color: rgb(31, 31, 31);
 }
 
-.formPopup {
-	height: 1rem;
+#formPopup {
+	display: none;
+	background-color: red;
 }
 
 .formItem {
