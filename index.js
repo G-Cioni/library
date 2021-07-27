@@ -6,7 +6,7 @@ bookTwo = new Book('1984', 'george Orwell', 234, 'Yes');
 
 let myLibrary = [];
 
-let forPopup = document.querySelector('#formPopup');
+let formPopup = document.querySelector('#formPopup');
 
 const submitBtn = document.querySelector('#submit');
 
@@ -72,6 +72,10 @@ function showBook() {
 	remove.setAttribute('id', `${myLibrary.length}`);
 	remove.addEventListener('click', () => removeBook());
 
+	let toggleReadBtn = document.createElement('button');
+	toggleReadBtn.setAttribute('id', `${myLibrary.length}`);
+	toggleReadBtn.addEventListener('click', () => toggleReadBtnFunc());
+
 	title.textContent = `Title: ${myLibrary[myLibrary.length - 1].title}`;
 	author.textContent = `Author: ${myLibrary[myLibrary.length - 1].author}`;
 	pages.textContent = `Length: ${myLibrary[myLibrary.length - 1].pages} pages`;
@@ -79,6 +83,7 @@ function showBook() {
 		myLibrary[myLibrary.length - 1].read
 	}`;
 	remove.textContent = 'Remove Book';
+	toggleReadBtn.textContent = 'Read';
 
 	library.appendChild(book);
 	book.appendChild(title);
@@ -86,6 +91,7 @@ function showBook() {
 	book.appendChild(pages);
 	book.appendChild(read);
 	book.appendChild(remove);
+	book.appendChild(toggleReadBtn);
 }
 
 function showLibrary() {
@@ -144,6 +150,13 @@ function removeBook() {
 	let button = document.getElementById(id);
 	delete myLibrary[id - 1];
 	button.parentElement.remove();
+	console.table(myLibrary);
+}
+
+function toggleReadBtnFunc() {
+	let id = event.srcElement.id;
+	myLibrary[id - 1].toggleRead();
+	console.table(myLibrary);
 }
 
 showLibrary();
