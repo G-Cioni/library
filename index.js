@@ -162,6 +162,9 @@ function toggleRead() {
 	let dataRead = event.target.getAttribute('data-toggle');
 	myLibrary[dataRead - 1].toggleRead();
 	console.table(myLibrary);
+	document.querySelector(
+		`[data-read="${dataRead}"]`
+	).textContent = `Finished reading?: ${myLibrary[dataRead - 1].read}`;
 }
 
 showLibrary();
