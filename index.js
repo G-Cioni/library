@@ -57,15 +57,19 @@ function showBook() {
 	book.setAttribute('class', 'book');
 
 	let title = document.createElement('div');
+	title.setAttribute('data-title', `${myLibrary.length}`);
 	title.setAttribute('class', 'formItem');
 
 	let author = document.createElement('div');
+	author.setAttribute('data-author', `${myLibrary.length}`);
 	author.setAttribute('class', 'formItem');
 
 	let pages = document.createElement('div');
+	pages.setAttribute('data-pages', `${myLibrary.length}`);
 	pages.setAttribute('class', 'formItem');
 
 	let read = document.createElement('div');
+	read.setAttribute('data-read', `${myLibrary.length}`);
 	read.setAttribute('class', 'formItem');
 
 	let remove = document.createElement('button');
