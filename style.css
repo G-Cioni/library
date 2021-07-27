@@ -92,6 +92,9 @@ h2 {
 	height: 1.8em;
 }
 
+[data-toggle] {
+	dispaly: inline;
+}
 @media (max-width: 720px) {
 	body {
 		display: grid;

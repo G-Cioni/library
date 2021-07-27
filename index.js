@@ -72,6 +72,9 @@ function showBook() {
 	read.setAttribute('data-read', `${myLibrary.length}`);
 	read.setAttribute('class', 'formItem');
 
+	let lowerButtons = document.createElement('div');
+	lowerButtons.setAttribute('data-lower-buttons', `${myLibrary.length}`);
+
 	let remove = document.createElement('button');
 	remove.setAttribute('data-remove', `${myLibrary.length}`);
 	remove.addEventListener('click', () => removeBook());
@@ -94,8 +97,9 @@ function showBook() {
 	book.appendChild(author);
 	book.appendChild(pages);
 	book.appendChild(read);
-	book.appendChild(remove);
-	book.appendChild(toggleReadBtn);
+	book.appendChild(lowerButtons);
+	lowerButtons.appendChild(remove);
+	lowerButtons.appendChild(toggleReadBtn);
 }
 
 function showLibrary() {
