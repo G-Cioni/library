@@ -97,7 +97,7 @@ function showBook() {
 	toggleReadBtn.textContent = 'Read';
 
 	// Add everything that was just created to DOM
-	library.appendChild(book);
+	library.prepend(book);
 	book.appendChild(title);
 	book.appendChild(author);
 	book.appendChild(pages);
