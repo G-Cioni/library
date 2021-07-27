@@ -1,30 +1,34 @@
+// Create dummy books
 bookZero = new Book('Think and Grow Rich', 'Napoleon Hill', 276, 'Yes');
 
 bookOne = new Book('The Master Key System', 'Charles Haanel', 140, 'No');
 
 bookTwo = new Book('1984', 'george Orwell', 234, 'Yes');
 
-let myLibrary = [];
-
-let formPopup = document.querySelector('#formPopup');
-
+// Create some const for DOM manipulation
 const submitBtn = document.querySelector('#submit');
 
 const library = document.querySelector('#library');
 
 const newBookBtn = document.querySelector('#addBook');
 
+const errors = document.querySelector('#errors');
+
 newBookBtn.addEventListener('click', () => openForm());
 
 submitBtn.addEventListener('click', () => submitForm());
 
-const errors = document.querySelector('#errors');
+// Create empty library
+let myLibrary = [];
 
+// Creating variables for Form DOM manipulation
+let formPopup = document.querySelector('#formPopup');
 let newTitle = document.querySelector('#title');
 let newAuthor = document.querySelector('#author');
 let newPages = document.querySelector('#pages');
 let newRead = document.querySelector('#read');
 
+// Create new book constructor
 function Book(title, author, pages, read) {
 	this.title = title;
 	this.author = author;
@@ -32,12 +36,14 @@ function Book(title, author, pages, read) {
 	this.read = read;
 }
 
+// Added info() to Book prototype
 Book.prototype.info = function () {
 	return `${title}, ${author}, ${pages} pages, ${
 		read == 'yes' ? 'has been read' : 'has not been read'
 	}`;
 };
 
+// Added toggleRead() to Book prototype
 Book.prototype.toggleRead = function () {
 	if (this.read === 'Yes') {
 		this.read = 'No';
@@ -46,7 +52,9 @@ Book.prototype.toggleRead = function () {
 	}
 };
 
+// Creates html for a new book
 function showBook() {
+	// Create new html elements for a new Book
 	let book = document.createElement('div');
 	book.setAttribute('id', `${myLibrary.length}`);
 	book.setAttribute('class', 'book');
@@ -78,6 +86,7 @@ function showBook() {
 	toggleReadBtn.setAttribute('data-toggle', `${myLibrary.length}`);
 	toggleReadBtn.addEventListener('click', () => toggleRead());
 
+	// Insert text content based on user input
 	title.textContent = `Title: ${myLibrary[myLibrary.length - 1].title}`;
 	author.textContent = `Author: ${myLibrary[myLibrary.length - 1].author}`;
 	pages.textContent = `Length: ${myLibrary[myLibrary.length - 1].pages} pages`;
@@ -87,6 +96,7 @@ function showBook() {
 	remove.textContent = 'Remove Book';
 	toggleReadBtn.textContent = 'Read';
 
+	// Add everything that was just created to DOM
 	library.appendChild(book);
 	book.appendChild(title);
 	book.appendChild(author);
@@ -97,17 +107,19 @@ function showBook() {
 	lowerButtons.appendChild(toggleReadBtn);
 }
 
+// Adds a new book to the library and runs showBook function (creates html for new book)
 function addBook(...book) {
 	myLibrary.push(...book);
 	showBook(book);
 }
-
+// Runs through the current library and creates neccessary html
 function showLibrary() {
 	for (let count = 0; count < myLibrary.length; count++) {
 		showBook();
 	}
 }
 
+// Removes the book which is parent of the "Remove Book" button
 function removeBook() {
 	let dataRemove = event.target.getAttribute('data-remove');
 	let book = document.getElementById(dataRemove);
@@ -115,6 +127,7 @@ function removeBook() {
 	book.remove();
 }
 
+// Toggles "Finished reading?" between "Yes" and "No"
 function toggleRead() {
 	let dataRead = event.target.getAttribute('data-toggle');
 	myLibrary[dataRead - 1].toggleRead();
@@ -123,14 +136,17 @@ function toggleRead() {
 	).textContent = `Finished reading?: ${myLibrary[dataRead - 1].read}`;
 }
 
+// Opens form to add a new book to library
 function openForm() {
 	formPopup.style.display = 'block';
 }
 
+// Closes the form if it's open
 function closeForm() {
 	formPopup.style.display = 'none';
 }
 
+// Checks for errors when user submits form
 function verifyFormErrors() {
 	errors.textContent = '';
 	errorList = ['Please insert: '];
@@ -150,6 +166,7 @@ function verifyFormErrors() {
 	}
 }
 
+// Submits form, closes it and adds book to library and DOM
 function submitForm() {
 	if (verifyFormErrors() === true) {
 		let newBook = new Book(
@@ -168,8 +185,10 @@ function submitForm() {
 	}
 }
 
+// Shows initial library
 showLibrary();
 
+//Adds dummy books
 addBook(bookZero);
 addBook(bookOne);
 addBook(bookTwo);
