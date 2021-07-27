@@ -74,7 +74,7 @@ function showBook() {
 
 	let toggleReadBtn = document.createElement('button');
 	toggleReadBtn.setAttribute('id', `${myLibrary.length}`);
-	toggleReadBtn.addEventListener('click', () => toggleReadBtnFunc());
+	toggleReadBtn.addEventListener('click', () => toggleRead());
 
 	title.textContent = `Title: ${myLibrary[myLibrary.length - 1].title}`;
 	author.textContent = `Author: ${myLibrary[myLibrary.length - 1].author}`;
@@ -153,7 +153,7 @@ function removeBook() {
 	console.table(myLibrary);
 }
 
-function toggleReadBtnFunc() {
+function toggleRead() {
 	let id = event.srcElement.id;
 	myLibrary[id - 1].toggleRead();
 	console.table(myLibrary);
