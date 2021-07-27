@@ -62,31 +62,6 @@ function showLibrary() {
 	}
 }
 
-function createForm() {
-	let body = document.querySelector('body');
-
-	let form = document.createElement('div');
-	form.setAttribute('class', 'form');
-
-	let title = document.createElement('input');
-	title.setAttribute('class', 'title');
-	form.appendChild(title);
-
-	let author = document.createElement('input');
-	author.setAttribute('class', 'author');
-	form.appendChild(author);
-
-	let pages = document.createElement('input');
-	pages.setAttribute('class', 'pages');
-	form.appendChild(pages);
-
-	let read = document.createElement('input');
-	read.setAttribute('class', 'read');
-	form.appendChild(read);
-
-	body.appendChild(form);
-}
-
 showLibrary();
 
 addBook(bookOne);

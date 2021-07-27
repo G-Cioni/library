@@ -8,7 +8,36 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <button id="addBook"></button>
+    <h1>Welcome to Your Library</h1>
+    <button id="addBook" onclick="operForm()">Add a new book</button>
+
+    <div class="formPopup"></div>
+
+        <h2>Add a New Book</h2>
+
+        <div class="formItem">
+            <label for="title" class="formLabel">Title</label>
+            <input type="text" placeholder="Es. Think and Grow Rich" name="title" id="title" >
+        </div>
+
+        <div class="formItem">
+            <label for="author" class="formLabel">Author</label>
+            <input type="text" placeholder="Es. Napoleon Hill" name="author" id="author">
+        </div>
+
+        <div class="formItem">
+            <label for="pages" class="formLabel">Numer of Pages</label>
+            <input type="text" placeholder="Es. 238" name="pages" id="pages">
+        </div>
+
+        <div class="formItem">
+            <label for="read" class="formLabel">Have you read this book?</label>
+            <select name="read" id="read">
+                <option value="yes">Yes!</option>
+                <option value="no">Not yet</option>
+            </select>
+        </div>
+
     <main  id="library">
 
     </main>

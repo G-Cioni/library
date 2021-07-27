@@ -2,21 +2,9 @@ html {
 	background-color: rgb(31, 31, 31);
 }
 
-.form {
+.formPopup {
 	height: 1rem;
 }
 
-.book {
-}
-
-.title {
-}
-
-.author {
-}
-
-.pages {
-}
-
-.read {
+.formItem {
 }
