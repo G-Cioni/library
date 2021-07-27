@@ -72,9 +72,9 @@ function showBook() {
 	remove.setAttribute('data-remove', `${myLibrary.length}`);
 	remove.addEventListener('click', () => removeBook());
 
-	// let toggleReadBtn = document.createElement('button');
-	// toggleReadBtn.setAttribute('id', `${myLibrary.length}`);
-	// toggleReadBtn.addEventListener('click', () => toggleRead());
+	let toggleReadBtn = document.createElement('button');
+	toggleReadBtn.setAttribute('data-toggle', `${myLibrary.length}`);
+	toggleReadBtn.addEventListener('click', () => toggleRead());
 
 	title.textContent = `Title: ${myLibrary[myLibrary.length - 1].title}`;
 	author.textContent = `Author: ${myLibrary[myLibrary.length - 1].author}`;
@@ -83,7 +83,7 @@ function showBook() {
 		myLibrary[myLibrary.length - 1].read
 	}`;
 	remove.textContent = 'Remove Book';
-	// toggleReadBtn.textContent = 'Read';
+	toggleReadBtn.textContent = 'Read';
 
 	library.appendChild(book);
 	book.appendChild(title);
@@ -91,7 +91,7 @@ function showBook() {
 	book.appendChild(pages);
 	book.appendChild(read);
 	book.appendChild(remove);
-	// book.appendChild(toggleReadBtn);
+	book.appendChild(toggleReadBtn);
 }
 
 function showLibrary() {
@@ -155,8 +155,8 @@ function removeBook() {
 }
 
 function toggleRead() {
-	let id = event.srcElement.id;
-	myLibrary[id - 1].toggleRead();
+	let dataRead = event.target.getAttribute('data-toggle');
+	myLibrary[dataRead - 1].toggleRead();
 	console.table(myLibrary);
 }
 
