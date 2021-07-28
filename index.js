@@ -80,10 +80,12 @@ function showBook() {
 
 	let remove = document.createElement('button');
 	remove.setAttribute('data-remove', `${myLibrary.length}`);
+	remove.setAttribute('class', 'fas fa-trash-alt');
 	remove.addEventListener('click', () => removeBook());
 
 	let toggleReadBtn = document.createElement('button');
 	toggleReadBtn.setAttribute('data-toggle', `${myLibrary.length}`);
+	toggleReadBtn.setAttribute('class', 'fas fa-glasses');
 	toggleReadBtn.addEventListener('click', () => toggleRead());
 
 	// Insert text content based on user input
@@ -93,8 +95,6 @@ function showBook() {
 	read.textContent = `Finished reading?: ${
 		myLibrary[myLibrary.length - 1].read
 	}`;
-	remove.textContent = 'Remove Book';
-	toggleReadBtn.textContent = 'Read';
 
 	// Add everything that was just created to DOM
 	library.prepend(book);
