@@ -61,19 +61,19 @@ function showBook() {
 
 	let title = document.createElement('div');
 	title.setAttribute('data-title', `${myLibrary.length}`);
-	title.setAttribute('class', 'formItem');
+	title.setAttribute('class', 'bookItem');
 
 	let author = document.createElement('div');
 	author.setAttribute('data-author', `${myLibrary.length}`);
-	author.setAttribute('class', 'formItem');
+	author.setAttribute('class', 'bookItem');
 
 	let pages = document.createElement('div');
 	pages.setAttribute('data-pages', `${myLibrary.length}`);
-	pages.setAttribute('class', 'formItem');
+	pages.setAttribute('class', 'bookItem');
 
 	let read = document.createElement('div');
 	read.setAttribute('data-read', `${myLibrary.length}`);
-	read.setAttribute('class', 'formItem');
+	read.setAttribute('class', 'bookItem');
 
 	let lowerButtons = document.createElement('div');
 	lowerButtons.setAttribute('data-lower-buttons', `${myLibrary.length}`);
@@ -98,13 +98,13 @@ function showBook() {
 
 	// Add everything that was just created to DOM
 	library.prepend(book);
+	book.appendChild(lowerButtons);
+	lowerButtons.appendChild(toggleReadBtn);
+	lowerButtons.appendChild(remove);
 	book.appendChild(title);
 	book.appendChild(author);
 	book.appendChild(pages);
 	book.appendChild(read);
-	book.appendChild(lowerButtons);
-	lowerButtons.appendChild(remove);
-	lowerButtons.appendChild(toggleReadBtn);
 }
 
 // Adds a new book to the library and runs showBook function (creates html for new book)
