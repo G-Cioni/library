@@ -1,10 +1,3 @@
-// Create dummy books
-bookZero = new Book('Think and Grow Rich', 'Napoleon Hill', 276, 'Yes');
-
-bookOne = new Book('The Master Key System', 'Charles Haanel', 140, 'No');
-
-bookTwo = new Book('1984', 'george Orwell', 234, 'Yes');
-
 // Create some const for DOM manipulation
 const submitBtn = document.querySelector('#submit');
 
@@ -18,11 +11,6 @@ newBookBtn.addEventListener('click', () => openForm());
 
 submitBtn.addEventListener('click', () => submitForm());
 
-// Create empty library
-let myLibrary = [];
-
-localGet();
-
 // Creating variables for Form DOM manipulation
 let formPopup = document.querySelector('#formPopup');
 let newTitle = document.querySelector('#title');
@@ -30,7 +18,29 @@ let newAuthor = document.querySelector('#author');
 let newPages = document.querySelector('#pages');
 let newRead = document.querySelector('#read');
 
-// Create new book constructor
+// Create empty library
+let myLibrary = [];
+
+// Save to localStorage
+function localSet() {
+	objSerial = JSON.stringify(myLibrary);
+	localStorage.myLibrary = objSerial;
+}
+
+// Retrieve from local storage and recreate each book as an object with access to prototype
+function localGet() {
+	if (localStorage.myLibrary) {
+		objDeserial = JSON.parse(localStorage.myLibrary);
+		myLibrary = objDeserial.map(
+			(book) => new Book(book.title, book.author, book.pages, book.read)
+		);
+	}
+}
+
+// Retrieve localStorage
+localGet();
+
+//  Book constructor
 function Book(title, author, pages, read) {
 	this.title = title;
 	this.author = author;
@@ -38,21 +48,14 @@ function Book(title, author, pages, read) {
 	this.read = read;
 }
 
-// Added info() to Book prototype
-Book.prototype.info = () => {
-	return `${title}, ${author}, ${pages} pages, ${
-		read == 'yes' ? 'has been read' : 'has not been read'
-	}`;
-};
-
-// Added toggleRead() to Book prototype
+// Add toggleRead() to Book prototype
 Book.prototype.toggleReadProto = function () {
 	this.read === 'Yes' ? (this.read = 'No') : (this.read = 'Yes');
 };
 
 // Creates html for a new book
-showBook = (i) => {
-	// Create new html elements for a new Book
+function showBook(i) {
+	// Create new html elements and set attributes for a new Book
 	let book = document.createElement('div');
 	book.setAttribute('id', `${i + 1}`);
 	book.setAttribute('class', 'book');
@@ -101,14 +104,14 @@ showBook = (i) => {
 	book.appendChild(author);
 	book.appendChild(pages);
 	book.appendChild(read);
-};
+}
 
 // Runs through the current library and creates neccessary html
-showLibrary = () => {
+function showLibrary() {
 	for (let count = 0; count < myLibrary.length; count++) {
 		showBook(count);
 	}
-};
+}
 
 // Adds a new book to the library and runs showBook function (creates html for new book)
 function addBook(...book) {
@@ -118,18 +121,17 @@ function addBook(...book) {
 }
 
 // Removes the book which is parent of the "Remove Book" button
-removeBook = () => {
+function removeBook() {
 	let dataRemove = event.target.getAttribute('data-remove');
 	let book = document.getElementById(dataRemove);
 	myLibrary.splice(dataRemove - 1, 1);
 	book.remove();
-	let books = document.querySelectorAll('.book');
 	fixHtmlBooks(dataRemove);
-	// for (let i; i < books.length; i++) {}
 	localSet();
-};
+}
 
-fixHtmlBooks = (dataRemove) => {
+// makes sure html attributes are correct when removing books
+function fixHtmlBooks(dataRemove) {
 	books = document.querySelectorAll('.book');
 	removeButtons = document.querySelectorAll('[data-remove]');
 	books = [...books];
@@ -144,17 +146,17 @@ fixHtmlBooks = (dataRemove) => {
 			}
 		});
 	});
-};
+}
 
 // Toggles "Finished reading?" between "Yes" and "No"
-toggleRead = () => {
+function toggleRead() {
 	let dataRead = event.target.getAttribute('data-toggle');
 	myLibrary[dataRead - 1].toggleReadProto();
 	document.querySelector(`[data-read="${dataRead}"]`).textContent = `Read?: ${
 		myLibrary[dataRead - 1].read
 	}`;
 	localSet();
-};
+}
 
 // Opens form to add a new book to library
 function openForm() {
@@ -178,7 +180,7 @@ function verifyFormErrors() {
 		case newTitle.value == '':
 			errorList.push('Number of Pages');
 	}
-	if (!!errorList[1]) {
+	if (errorList[1]) {
 		errors.textContent = errorList.join(' | ');
 	}
 	if (errorList[1] === undefined) {
@@ -188,19 +190,6 @@ function verifyFormErrors() {
 	}
 }
 
-function localSet() {
-	objSerial = JSON.stringify(myLibrary);
-	localStorage.myLibrary = objSerial;
-}
-
-function localGet() {
-	if (localStorage.myLibrary) {
-		objDeserial = JSON.parse(localStorage.myLibrary);
-		myLibrary = objDeserial.map(
-			(book) => new Book(book.title, book.author, book.pages, book.read)
-		);
-	}
-}
 // Submits form, closes it and adds book to library and DOM
 function submitForm() {
 	if (verifyFormErrors()) {
@@ -221,5 +210,3 @@ function submitForm() {
 
 // Shows initial library
 showLibrary();
-
-//Adds dummy books
