@@ -88,9 +88,7 @@ showBook = () => {
 	title.textContent = `Title: ${myLibrary[myLibrary.length - 1].title}`;
 	author.textContent = `Author: ${myLibrary[myLibrary.length - 1].author}`;
 	pages.textContent = `Length: ${myLibrary[myLibrary.length - 1].pages} pages`;
-	read.textContent = `Finished reading?: ${
-		myLibrary[myLibrary.length - 1].read
-	}`;
+	read.textContent = `Read?: ${myLibrary[myLibrary.length - 1].read}`;
 
 	// Add everything that was just created to DOM
 	library.prepend(book);
@@ -110,12 +108,38 @@ showLibrary = () => {
 	}
 };
 
+// Adds a new book to the library and runs showBook function (creates html for new book)
+function addBook(...book) {
+	myLibrary.push(...book);
+	showBook(book);
+}
+
 // Removes the book which is parent of the "Remove Book" button
 removeBook = () => {
 	let dataRemove = event.target.getAttribute('data-remove');
 	let book = document.getElementById(dataRemove);
-	delete myLibrary[dataRemove - 1];
+	myLibrary.splice(dataRemove - 1, 1);
 	book.remove();
+	let books = document.querySelectorAll('.book');
+	fixHtmlBooks(dataRemove);
+	for (let i; i < books.length; i++) {}
+};
+
+fixHtmlBooks = (dataRemove) => {
+	books = document.querySelectorAll('.book');
+	removeButtons = document.querySelectorAll('[data-remove]');
+	books = [...books];
+	removeButtons = [...removeButtons];
+	books.map((book) => {
+		if (book.id > dataRemove) {
+			book.id -= 1;
+		}
+		removeButtons.map((button) => {
+			if (button.dataset.remove > dataRemove) {
+				button.dataset.remove -= 1;
+			}
+		});
+	});
 };
 
 // Toggles "Finished reading?" between "Yes" and "No"
@@ -149,7 +173,9 @@ function verifyFormErrors() {
 		case newTitle.value == '':
 			errorList.push('Number of Pages');
 	}
-	errors.textContent = errorList.join(' | ');
+	if (!!errorList[1]) {
+		errors.textContent = errorList.join(' | ');
+	}
 	if (errorList[1] === undefined) {
 		return true;
 	} else {
@@ -162,18 +188,16 @@ function submitForm() {
 	if (verifyFormErrors()) {
 		let newBook = new Book(
 			newTitle.value,
-			console.log(newTitle.value),
 			newAuthor.value,
 			newPages.value,
 			newRead.value
 		);
-		myLibrary.push(newBook);
+		addBook(newBook);
 		newTitle.value = '';
 		newAuthor.value = '';
 		newPages.value = '';
 		newRead.value = '';
 		closeForm();
-		showBook();
 	}
 }
 
@@ -182,11 +206,6 @@ showLibrary();
 
 //Adds dummy books
 
-// Adds a new book to the library and runs showBook function (creates html for new book)
-function addBook(...book) {
-	myLibrary.push(...book);
-	showBook(book);
-}
 addBook(bookZero);
 addBook(bookOne);
 addBook(bookTwo);
