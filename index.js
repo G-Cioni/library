@@ -51,46 +51,46 @@ Book.prototype.toggleReadProto = function () {
 };
 
 // Creates html for a new book
-showBook = () => {
+showBook = (i) => {
 	// Create new html elements for a new Book
 	let book = document.createElement('div');
-	book.setAttribute('id', `${myLibrary.length}`);
+	book.setAttribute('id', `${i + 1}`);
 	book.setAttribute('class', 'book');
 
 	let title = document.createElement('div');
-	title.setAttribute('data-title', `${myLibrary.length}`);
+	title.setAttribute('data-title', `${i + 1}}`);
 	title.setAttribute('class', 'bookItem');
 
 	let author = document.createElement('div');
-	author.setAttribute('data-author', `${myLibrary.length}`);
+	author.setAttribute('data-author', `${i + 1}`);
 	author.setAttribute('class', 'bookItem');
 
 	let pages = document.createElement('div');
-	pages.setAttribute('data-pages', `${myLibrary.length}`);
+	pages.setAttribute('data-pages', `${i + 1}`);
 	pages.setAttribute('class', 'bookItem');
 
 	let read = document.createElement('div');
-	read.setAttribute('data-read', `${myLibrary.length}`);
+	read.setAttribute('data-read', `${i + 1}`);
 	read.setAttribute('class', 'bookItem');
 
 	let lowerButtons = document.createElement('div');
-	lowerButtons.setAttribute('data-lower-buttons', `${myLibrary.length}`);
+	lowerButtons.setAttribute('data-lower-buttons', `${i + 1}`);
 
 	let remove = document.createElement('button');
-	remove.setAttribute('data-remove', `${myLibrary.length}`);
+	remove.setAttribute('data-remove', `${i + 1}`);
 	remove.setAttribute('class', 'fas fa-trash-alt');
 	remove.addEventListener('click', () => removeBook());
 
 	let toggleReadBtn = document.createElement('button');
-	toggleReadBtn.setAttribute('data-toggle', `${myLibrary.length}`);
+	toggleReadBtn.setAttribute('data-toggle', `${i + 1}`);
 	toggleReadBtn.setAttribute('class', 'fas fa-glasses');
 	toggleReadBtn.addEventListener('click', () => toggleRead());
 
 	// Insert text content based on user input
-	title.textContent = `Title: ${myLibrary[myLibrary.length - 1].title}`;
-	author.textContent = `Author: ${myLibrary[myLibrary.length - 1].author}`;
-	pages.textContent = `Length: ${myLibrary[myLibrary.length - 1].pages} pages`;
-	read.textContent = `Read?: ${myLibrary[myLibrary.length - 1].read}`;
+	title.textContent = `Title: ${myLibrary[i].title}`;
+	author.textContent = `Author: ${myLibrary[i].author}`;
+	pages.textContent = `Length: ${myLibrary[i].pages} pages`;
+	read.textContent = `Read?: ${myLibrary[i].read}`;
 
 	// Add everything that was just created to DOM
 	library.prepend(book);
@@ -106,7 +106,7 @@ showBook = () => {
 // Runs through the current library and creates neccessary html
 showLibrary = () => {
 	for (let count = 0; count < myLibrary.length; count++) {
-		showBook();
+		showBook(count);
 	}
 };
 
@@ -114,7 +114,7 @@ showLibrary = () => {
 function addBook(...book) {
 	myLibrary.push(...book);
 	localSet();
-	showBook(book);
+	showBook(myLibrary.length);
 }
 
 // Removes the book which is parent of the "Remove Book" button
