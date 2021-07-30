@@ -21,6 +21,8 @@ submitBtn.addEventListener('click', () => submitForm());
 // Create empty library
 let myLibrary = [];
 
+localGet();
+
 // Creating variables for Form DOM manipulation
 let formPopup = document.querySelector('#formPopup');
 let newTitle = document.querySelector('#title');
@@ -44,7 +46,7 @@ Book.prototype.info = () => {
 };
 
 // Added toggleRead() to Book prototype
-Book.prototype.toggleRead = function () {
+Book.prototype.toggleReadProto = function () {
 	this.read === 'Yes' ? (this.read = 'No') : (this.read = 'Yes');
 };
 
@@ -111,6 +113,7 @@ showLibrary = () => {
 // Adds a new book to the library and runs showBook function (creates html for new book)
 function addBook(...book) {
 	myLibrary.push(...book);
+	localSet();
 	showBook(book);
 }
 
@@ -122,7 +125,8 @@ removeBook = () => {
 	book.remove();
 	let books = document.querySelectorAll('.book');
 	fixHtmlBooks(dataRemove);
-	for (let i; i < books.length; i++) {}
+	// for (let i; i < books.length; i++) {}
+	localSet();
 };
 
 fixHtmlBooks = (dataRemove) => {
@@ -145,10 +149,11 @@ fixHtmlBooks = (dataRemove) => {
 // Toggles "Finished reading?" between "Yes" and "No"
 toggleRead = () => {
 	let dataRead = event.target.getAttribute('data-toggle');
-	myLibrary[dataRead - 1].toggleRead();
-	document.querySelector(
-		`[data-read="${dataRead}"]`
-	).textContent = `Finished reading?: ${myLibrary[dataRead - 1].read}`;
+	myLibrary[dataRead - 1].toggleReadProto();
+	document.querySelector(`[data-read="${dataRead}"]`).textContent = `Read?: ${
+		myLibrary[dataRead - 1].read
+	}`;
+	localSet();
 };
 
 // Opens form to add a new book to library
@@ -183,6 +188,17 @@ function verifyFormErrors() {
 	}
 }
 
+function localSet() {
+	objSerial = JSON.stringify(myLibrary);
+	localStorage.myLibrary = objSerial;
+}
+
+function localGet() {
+	if (localStorage.myLibrary) {
+		objDeserial = JSON.parse(localStorage.myLibrary);
+		myLibrary = objDeserial;
+	}
+}
 // Submits form, closes it and adds book to library and DOM
 function submitForm() {
 	if (verifyFormErrors()) {
@@ -205,7 +221,3 @@ function submitForm() {
 showLibrary();
 
 //Adds dummy books
-
-addBook(bookZero);
-addBook(bookOne);
-addBook(bookTwo);
