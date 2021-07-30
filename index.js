@@ -37,7 +37,7 @@ function Book(title, author, pages, read) {
 }
 
 // Added info() to Book prototype
-Book.prototype.info = function () {
+Book.prototype.info = () => {
 	return `${title}, ${author}, ${pages} pages, ${
 		read == 'yes' ? 'has been read' : 'has not been read'
 	}`;
@@ -45,15 +45,11 @@ Book.prototype.info = function () {
 
 // Added toggleRead() to Book prototype
 Book.prototype.toggleRead = function () {
-	if (this.read === 'Yes') {
-		this.read = 'No';
-	} else {
-		this.read = 'Yes';
-	}
+	this.read === 'Yes' ? (this.read = 'No') : (this.read = 'Yes');
 };
 
 // Creates html for a new book
-function showBook() {
+showBook = () => {
 	// Create new html elements for a new Book
 	let book = document.createElement('div');
 	book.setAttribute('id', `${myLibrary.length}`);
@@ -105,36 +101,31 @@ function showBook() {
 	book.appendChild(author);
 	book.appendChild(pages);
 	book.appendChild(read);
-}
+};
 
-// Adds a new book to the library and runs showBook function (creates html for new book)
-function addBook(...book) {
-	myLibrary.push(...book);
-	showBook(book);
-}
 // Runs through the current library and creates neccessary html
-function showLibrary() {
+showLibrary = () => {
 	for (let count = 0; count < myLibrary.length; count++) {
 		showBook();
 	}
-}
+};
 
 // Removes the book which is parent of the "Remove Book" button
-function removeBook() {
+removeBook = () => {
 	let dataRemove = event.target.getAttribute('data-remove');
 	let book = document.getElementById(dataRemove);
 	delete myLibrary[dataRemove - 1];
 	book.remove();
-}
+};
 
 // Toggles "Finished reading?" between "Yes" and "No"
-function toggleRead() {
+toggleRead = () => {
 	let dataRead = event.target.getAttribute('data-toggle');
 	myLibrary[dataRead - 1].toggleRead();
 	document.querySelector(
 		`[data-read="${dataRead}"]`
 	).textContent = `Finished reading?: ${myLibrary[dataRead - 1].read}`;
-}
+};
 
 // Opens form to add a new book to library
 function openForm() {
@@ -168,9 +159,10 @@ function verifyFormErrors() {
 
 // Submits form, closes it and adds book to library and DOM
 function submitForm() {
-	if (verifyFormErrors() === true) {
+	if (verifyFormErrors()) {
 		let newBook = new Book(
 			newTitle.value,
+			console.log(newTitle.value),
 			newAuthor.value,
 			newPages.value,
 			newRead.value
@@ -189,6 +181,12 @@ function submitForm() {
 showLibrary();
 
 //Adds dummy books
+
+// Adds a new book to the library and runs showBook function (creates html for new book)
+function addBook(...book) {
+	myLibrary.push(...book);
+	showBook(book);
+}
 addBook(bookZero);
 addBook(bookOne);
 addBook(bookTwo);
