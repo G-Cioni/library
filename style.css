@@ -56,7 +56,7 @@ body {
 #library {
 	grid-area: library;
 	display: grid;
-	grid-template-columns: 1fr 1fr;
+	grid-template-columns: auto auto auto;
 }
 
 .book {
