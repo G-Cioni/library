@@ -196,7 +196,9 @@ function localSet() {
 function localGet() {
 	if (localStorage.myLibrary) {
 		objDeserial = JSON.parse(localStorage.myLibrary);
-		myLibrary = objDeserial;
+		myLibrary = objDeserial.map(
+			(book) => new Book(book.title, book.author, book.pages, book.read)
+		);
 	}
 }
 // Submits form, closes it and adds book to library and DOM
