@@ -1,6 +1,6 @@
 html {
-	background-color: rgb(31, 31, 31);
-	font-family: sans-serif;
+	background-color: rgb(17, 34, 59);
+	font-family: 'Ubuntu', sans-serif;
 	font-size: 17px;
 	font-weight: bold;
 	line-height: 1.5;
@@ -20,7 +20,7 @@ body {
 
 #formPopup {
 	display: none;
-	background-color: rgb(44, 44, 44);
+	background-color: rgb(28, 86, 139);
 	color: rgba(255, 255, 255, 0.884);
 	border-radius: 10px;
 	box-shadow: 2px 2px 10px black;
@@ -31,13 +31,6 @@ body {
 	transform: translate(-50%, -50%);
 }
 
-.bookItem {
-	display: flex;
-	flex-direction: column;
-	padding: 0.5em 0em;
-	margin: 0.4em 0.3em 0em 0.3em;
-}
-
 .formItem {
 	display: flex;
 	flex-direction: column;
@@ -45,9 +38,6 @@ body {
 	margin: 0.2em;
 }
 
-.bookItem:hover {
-	color: rgba(0, 255, 255, 0.856);
-}
 .formLabel {
 	font-size: 0.9rem;
 	margin-bottom: 0.5em;
@@ -60,11 +50,11 @@ body {
 }
 
 .book {
-	background-color: rgb(44, 44, 44);
+	background-color: rgb(31, 96, 156);
 	color: rgba(255, 255, 255, 0.884);
 	border-radius: 10px;
-	border-left: 0.25em solid rgba(0, 255, 255, 0.856);
-	box-shadow: 2px 5px 10px rgb(0, 0, 0);
+	border-left: 0.25em solid rgb(255, 166, 0);
+	box-shadow: 1px 1px 3px rgb(0, 0, 0);
 	margin: 1.2em;
 	padding: 0.7em;
 	display: grid;
@@ -73,15 +63,25 @@ body {
 }
 
 .book:hover {
-	background-color: rgb(53, 53, 53);
-	box-shadow: 3px 7px 10px rgb(0, 0, 0);
+	background-color: rgb(28, 86, 139);
+}
+
+.bookItem {
+	display: flex;
+	flex-direction: column;
+	padding: 0.5em 0em;
+	margin: 0.4em 0.3em 0em 0.3em;
+}
+
+.bookItem:hover {
+	color: rgb(255, 166, 0);
 }
 
 .btn {
 	max-width: max-content;
 	text-align: center;
 	background-color: transparent;
-	border: 1px solid;
+	border: 2px solid;
 	border-radius: 10px;
 	padding: 0.1em 0.3em;
 	color: rgba(255, 255, 255, 0.884);
@@ -92,7 +92,7 @@ body {
 h1 {
 	font-size: 3.5em;
 	grid-area: h1;
-	color: rgba(255, 255, 255, 0.884);
+	color: rgb(255, 166, 0);
 	margin-bottom: 0.2em;
 }
 
@@ -103,31 +103,29 @@ h2 {
 }
 
 #errors {
-	color: rgba(255, 30, 0, 0.726);
+	color: rgb(255, 72, 0);
 	font-size: 0.9rem;
-	margin: 0.5em;
+	margin: 0.5em 1.5em;
 }
 #addBook {
 	grid-area: addBook;
 	max-width: max-content;
 	text-align: center;
 	background-color: transparent;
-	border: 0.1em solid;
+	border: 0.08em solid;
 	border-radius: 10px;
-	color: rgba(255, 255, 255, 0.884);
+	color: rgb(238, 238, 238);
 	font-size: 3.5em;
 	margin: 0.4em;
 	padding: 0.1em 0.2em;
 }
 
 #addBook:hover {
-	color: rgba(0, 255, 255, 0.856);
-	box-shadow: 5px 5px 10px black;
+	color: rgb(255, 166, 0);
 }
 
 .btn:hover {
-	color: rgba(0, 255, 255, 0.856);
-	box-shadow: 3px 3px 10px black;
+	color: rgb(255, 166, 0);
 }
 .formInput {
 	height: 1.8em;
@@ -147,8 +145,7 @@ h2 {
 }
 
 [data-remove]:hover {
-	color: rgba(0, 255, 255, 0.856);
-	box-shadow: 1px 1px 10px black;
+	color: rgb(255, 166, 0);
 }
 
 [data-toggle] {
@@ -160,8 +157,7 @@ h2 {
 	font-size: 1em;
 }
 [data-toggle]:hover {
-	color: rgba(0, 255, 255, 0.856);
-	box-shadow: 1px 1px 10px black;
+	color: rgb(255, 166, 0);
 }
 
 @media (max-width: 980px) {
