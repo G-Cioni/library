@@ -1,3 +1,16 @@
+//  Book class
+class Book {
+	constructor(title, author, pages, read) {
+		this.title = title;
+		this.author = author;
+		this.pages = pages;
+		this.read = read;
+	}
+	toggleRead() {
+		this.read === 'Yes' ? (this.read = 'No') : (this.read = 'Yes');
+	}
+}
+
 // Create some const for DOM manipulation
 const submitBtn = document.querySelector('#submit');
 
@@ -39,19 +52,6 @@ function localGet() {
 
 // Retrieve localStorage
 localGet();
-
-//  Book constructor
-function Book(title, author, pages, read) {
-	this.title = title;
-	this.author = author;
-	this.pages = pages;
-	this.read = read;
-}
-
-// Add toggleRead() to Book prototype
-Book.prototype.toggleReadProto = function () {
-	this.read === 'Yes' ? (this.read = 'No') : (this.read = 'Yes');
-};
 
 // Creates html for a new book
 function showBook(i) {
@@ -151,7 +151,7 @@ function fixHtmlBooks(dataRemove) {
 // Toggles "Finished reading?" between "Yes" and "No"
 function toggleRead() {
 	let dataRead = event.target.getAttribute('data-toggle');
-	myLibrary[dataRead - 1].toggleReadProto();
+	myLibrary[dataRead - 1].toggleRead();
 	document.querySelector(`[data-read="${dataRead}"]`).textContent = `Read?: ${
 		myLibrary[dataRead - 1].read
 	}`;
