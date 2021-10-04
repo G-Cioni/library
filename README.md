@@ -1,3 +1,3 @@
 # library
 
-https://gianluca-cioni.github.io/library/
+https://gianlucacioni.github.io/library/
